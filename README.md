@@ -18,12 +18,17 @@ git4j is an attempt to learn how git works by implementing some parts of it.
          * Add file.
          *
          */
+         
+        Git git = new Git();
 
         GitCommit c = new GitCommit();
         c.setMessage("Add file.");
         c.setCommitter("Montoya Edu <montoya.edu@gmail.com>");
         c.setAuthor("Montoya Edu <montoya.edu@gmail.com>");
+        
+        Calendar calendar = g.getCalendar("Europe/Rome");
         calendar.setTimeInMillis(1496830486);
+        
         c.setAuthoringDate(calendar.getTime());
         c.setCommitDate(calendar.getTime());
         c.setAuthoringTimezone("Europe/Rome");
