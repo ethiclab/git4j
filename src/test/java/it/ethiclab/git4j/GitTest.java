@@ -290,14 +290,7 @@ public class GitTest {
             objectsFolder.mkdir();
 
             for (GitObject object : objects) {
-                String sha = g.binaryToHex(g.getSha(object));
-                System.out.println(object + ", sha = " + sha);
-
-                File twoLettersFolder = Paths.get(objectsFolder.getAbsolutePath(), sha.substring(0, 2)).toFile();
-                twoLettersFolder.mkdir();
-
-                Path OBJECT = Paths.get(twoLettersFolder.getAbsolutePath(), sha.substring(2));
-                Files.write(OBJECT, g.compress(g.serialize(object)));
+                g.serializeGitObjectToFile(objectsFolder, object);
             }
 
             File refsFolder = Paths.get(dotGitFolder.getAbsolutePath(), "refs").toFile();

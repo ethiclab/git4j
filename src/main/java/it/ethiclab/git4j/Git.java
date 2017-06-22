@@ -2,6 +2,7 @@ package it.ethiclab.git4j;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
@@ -212,5 +213,15 @@ public class Git {
                 uncompress(itemPath.toFile(), blob.toFile());
             }
         }
+    }
+
+    public void serializeGitObjectToFile(File objectsFolder, GitObject object) throws IOException {
+        String sha = binaryToHex(getSha(object));
+
+        File twoLettersFolder = Paths.get(objectsFolder.getAbsolutePath(), sha.substring(0, 2)).toFile();
+        twoLettersFolder.mkdir();
+
+        Path OBJECT = Paths.get(twoLettersFolder.getAbsolutePath(), sha.substring(2));
+        Files.write(OBJECT, compress(serialize(object)));
     }
 }
