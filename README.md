@@ -53,6 +53,16 @@ Here we create a commit with a reference to the tree created in the previous exa
         c.setAuthoringTimezone("Europe/Rome");
         c.setCommitTimezone("Europe/Rome");
         c.setTree("132bfb311556de7c60c34ef3d450c9e8bcc6310b");
+        
+        byte[] bytes = g.serialize(c);
+        
+        byte[] compressed = g.compress(bytes);
+        
+        String sha = g.binaryToHex(g.getSha(c));
+        
+        // now that we have the SHA1 string, and the compressed bytes, we can store it:
+        // on the filesystem, as git normally does, or
+        // you can choose the kind persistence layer you want to use for your needs.
 ```
 
 ## Further details
