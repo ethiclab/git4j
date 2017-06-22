@@ -22,6 +22,16 @@ public class GitTest {
     private final Calendar calendar = g.getCalendar(TIMEZONE);
 
     @Test
+    public void testInvalidObject() {
+        assertThatThrownBy(() -> g.serialize(new GitObject() {
+            @Override
+            public int hashCode() {
+                return super.hashCode();
+            }
+        })).isInstanceOf(GitException.class).hasMessageContaining("unsupported object it.ethiclab.git4j.GitTest$1");
+    }
+
+    @Test
     public void testHelloWorldSha1() {
         assertThat(g.binaryToHex(g.getBlobSha1("Hello World!\n\n"))).isEqualTo("ea2fd5c3fa7abbc3b05bade4a1c9ea0a5c3f1758");
     }
