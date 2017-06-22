@@ -6,8 +6,27 @@
 
 git4j is an attempt to learn how git works by implementing some parts of it.
 
+## Create Root Tree
+
+Here we create an initial tree at root leve; with a file named pippo with the content "Hello World!\n\n"
+
+```java
+    private GitTreeEntry createInitialTree() {
+        List<GitTreeEntry> objects = new ArrayList<>();
+        objects.add(createFileEntry("pippo", "Hello World!\n\n"));
+        return new GitTreeEntry(objects);
+    }
+    
+    @Test
+    public void testTreeWith1Item() {
+        assertThat(g.binaryToHex(g.getTreeSha(createInitialTree())))
+                .isEqualTo("132bfb311556de7c60c34ef3d450c9e8bcc6310b");
+    }
+```
 
 ## Create Initial Commit
+
+Here we create a commit with a reference to the tree created in the previous example.
 
 ```java
         /**
