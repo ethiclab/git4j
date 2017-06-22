@@ -209,7 +209,7 @@ public class Git {
                 checkout(entry, root, itemPath);
             } else {
                 String sha = binaryToHex(entry.getSha1());
-                Path blob = Paths.get(root.toFile().getAbsolutePath(), ".git4j", "objects", sha.substring(0, 2), sha.substring(2));
+                Path blob = Paths.get(root.toFile().getAbsolutePath(), ".git", "objects", sha.substring(0, 2), sha.substring(2));
                 uncompress(itemPath.toFile(), blob.toFile());
             }
         }
