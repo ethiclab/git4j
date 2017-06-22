@@ -283,7 +283,7 @@ public class GitTest {
                 throw new RuntimeException(folder.getAbsolutePath() + " is not a folder!");
             }
 
-            File dotGitFolder = Paths.get(folder.getAbsolutePath(), ".git4j").toFile();
+            File dotGitFolder = Paths.get(folder.getAbsolutePath(), ".git").toFile();
             dotGitFolder.mkdir();
 
             File objectsFolder = Paths.get(dotGitFolder.getAbsolutePath(), "objects").toFile();
