@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class GitTest {
 
     private Git g = new Git();
-    private static final String TIMEZONE = "Europe/Rome";
+    private static final String TIMEZONE = "GMT+2";
     private final Calendar calendar = g.getCalendar(TIMEZONE);
 
     @Test
